@@ -1,0 +1,21 @@
+<h1>this is the login page</h1>
+
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+<% if flash[:alert] %>
+    <%= flash[:alert] %>
+<% end %>
+
+<%= form_with url: login_account_index_path, local: true, data: { turbo: false }  do |forms| %>
+
+    <%= forms.label :email, "Email account" %>
+    <%= forms.text_field :email, required: true %>
+
+    <%= forms.label :password %>
+    <%= forms.password_field :password, required: true %>
+
+    <%= forms.submit "Login" %>
+<% end %>
+
+<%= link_to "Back", root_path, class: "btn btn-primary" %>

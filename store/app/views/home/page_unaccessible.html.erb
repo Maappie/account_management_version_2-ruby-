@@ -1,0 +1,7 @@
+<h1>The page is unaccessible. Return to home page</h1>
+
+<% if flash[:alert] %>
+    <%= flash[:alert] %>
+<% end %>
+
+<%= link_to "Home Page", root_path, class: "btn btn-primary" %>

@@ -1,0 +1,25 @@
+<h1>Forgot password.</h1>
+
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+<% if flash[:alert] %>
+    <%= flash[:alert] %>
+<% end %>
+
+<%= form_with url: reset_password_index_path, local: true, data: { turbo: false} do |forms| %>
+
+    <%= forms.label :email, "Email account" %>
+    <%= forms.text_field :email %>
+
+    <%= forms.submit "Forgot password" %>
+
+<% end %>
+
+  <h3>Session Debug Info (remove before production!)</h3>
+  <ul>
+    <li><strong>reset_password_id:</strong> <%= session[:reset_password_id].inspect %></li>
+    <li><strong>reset_password_code:</strong> <%= session[:reset_password_code].inspect %></li>
+    <li><strong>reset_password_code_expires_at:</strong> <%= session[:reset_password_code_expires_at].inspect %></li>
+  </ul>
+</div>

@@ -1,0 +1,23 @@
+<h1>Change password verification.</h1>
+
+<% if flash[:notice] %>
+        <%= flash[:notice] %>
+<% end %>
+<% if flash[:alert] %>
+        <%= flash[:alert] %>
+<% end %>   
+
+<%= form_with url: verify_reset_code_reset_password_index_path, local: true, data: { turbo: false} do |forms| %>
+
+    <%= forms.label :verification_code, "Change password verification code" %>
+    <%= forms.text_field :verification_code, required: true, autocomplete: "one-time-code" %>
+
+    <%= forms.submit "Verify code." %>
+<% end %>
+
+  <h3>Session Debug Info (remove before production!)</h3>
+  <ul>
+    <li><strong>reset_password_id:</strong> <%= session[:reset_password_id].inspect %></li>
+    <li><strong>reset_password_code:</strong> <%= session[:reset_password_code].inspect %></li>
+    <li><strong>reset_password_code_expires_at:</strong> <%= session[:reset_password_code_expires_at].inspect %></li>
+  </ul>

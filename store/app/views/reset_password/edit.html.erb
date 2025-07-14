@@ -1,0 +1,37 @@
+<h1>Enter new password</h1>
+
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<% if flash[:errors] %>
+  <ul class="errors">
+    <% flash[:errors].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with url: reset_password_path(@account), method: :patch, local: true, data: { turbo: false } do |forms| %>
+
+    <%= forms.label :password, "New password" %> 
+    <%= forms.text_field :password %>
+
+    <%= forms.label :password_confirmation, "Confirm new password" %>
+    <%= forms.password_field :password_confirmation %>
+
+    <%= forms.submit "Verify Code" %>
+<% end %>
+
+  <h3>Session Debug Info (remove before production!)</h3>
+  <ul>
+    <li><strong>reset_password_id:</strong> <%= session[:reset_password_id].inspect %></li>
+    <li><strong>reset_password_code:</strong> <%= session[:reset_password_code].inspect %></li>
+    <li><strong>reset_password_code_expires_at:</strong> <%= session[:reset_password_code_expires_at].inspect %></li>
+    <li><strong>update_password:</strong> <%= session[:update_password].inspect %></li>
+  </ul>

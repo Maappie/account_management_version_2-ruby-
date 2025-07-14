@@ -1,0 +1,24 @@
+<h1>this is the homepage</h1>
+
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+<% if flash[:alert] %>
+    <%= flash[:alert] %>
+<% end %>
+
+<%= link_to "Sign up", new_account_path, class: "btn btn-primary" %>
+<br>  
+<%= link_to "Forgot password", new_reset_password_path, class: "btn btn-primary" %>
+<br>
+<%= link_to "Login account", new_login_account_path, class: "btn btn-primary" %>
+
+
+<div>
+  <h3>Session Debug Info (remove before production!)</h3>
+  <ul>
+    <li><strong>create_account_id:</strong> <%= session[:create_account_id].inspect %></li>
+    <li><strong>create_account_verification_code:</strong> <%= session[:create_account_verification_code].inspect %></li>
+    <li><strong>create_account_verification_code_expires_at:</strong> <%= session[:create_account_verification_code_expires_at].inspect %></li>
+  </ul>
+</div>

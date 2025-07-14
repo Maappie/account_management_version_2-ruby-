@@ -1,0 +1,26 @@
+<h1>Hi broskie, check your email please</h1>
+
+        <% if flash[:notice] %>
+                <%= flash[:notice] %>
+        <% end %>
+        <% if flash[:alert] %>
+                <%= flash[:alert] %>
+        <% end %>
+
+        <%= form_with url: verify_code_accounts_path, local: true, data: { turbo: false } do |forms| %>
+                <%= forms.label :verification_code, "Enter Verification Code" %>
+                <%= forms.text_field :verification_code, required: true, autocomplete: "one-time-code" %>
+
+                <%= forms.submit "Verify code", class: "btn btn-primary" %>
+        <% end %>
+
+        <%= button_to "Resend Verification Email", resend_verification_email_accounts_path, method: :post, class: "btn btn-secondary" %>
+
+<div>
+  <h3>Session Debug Info (remove before production!)</h3>
+  <ul>
+    <li><strong>create_account_id:</strong> <%= session[:create_account_id].inspect %></li>
+    <li><strong>create_account_verification_code:</strong> <%= session[:create_account_verification_code].inspect %></li>
+    <li><strong>create_account_verification_code_expires_at:</strong> <%= session[:create_account_verification_code_expires_at].inspect %></li>
+  </ul>
+</div>
